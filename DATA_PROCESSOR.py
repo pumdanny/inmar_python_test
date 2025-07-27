@@ -45,7 +45,7 @@ class DATA_PROCESSOR:
 
 
 
-    def load_data_module_1(self, list_of_files):
+    def load_data_module_1(self):
         self.get_files_to_process()
 
         for file in self.list_of_files:
