@@ -15,6 +15,7 @@ class DATA_PROCESSOR:
         self.processing_path =f"{current_dir}\data\processing"
         self.error_path = f"{current_dir}\data\error"
         self.success_path = f"{current_dir}\data\success"
+        self.processed_path = f"{current_dir}\data\processed"
 
         self.list_of_files = []
 
@@ -154,6 +155,16 @@ class DATA_PROCESSOR:
             null_df.to_csv(null_output_file, index=False)
             print(f"Records with at least one required field null saved to {null_output_file}")
             
+
+            # save valid data to success folder
+            valid_output_file = os.path.join(self.success_path, f"{file_name_only[0:-4]}.out")
+            valid_df.to_csv(valid_output_file, index=False)
+            print(f"Valid data saved to {valid_output_file}")
+
+            #moving file from processing folder to processed folder
+            processing_file = os.path.join(self.processing_path, file_name_only)
+            processed_file = os.path.join(self.processed_path, file_name_only)
+            os.rename(processing_file, processed_file)
 
     def check_phone_file(self, phone: None):      
         response = False
