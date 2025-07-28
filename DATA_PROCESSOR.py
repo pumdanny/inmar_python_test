@@ -159,7 +159,7 @@ class DATA_PROCESSOR:
             # save valid data to success folder
             valid_output_file = os.path.join(self.success_path, f"{file_name_only[0:-4]}.out")
             valid_df.to_csv(valid_output_file, index=False)
-            print(f"Valid data saved to {valid_output_file}")
+            print(f"Valid data saved to {valid_output_file} total records: {len(valid_df)}")
 
             #moving file from processing folder to processed folder
             processing_file = os.path.join(self.processing_path, file_name_only)
