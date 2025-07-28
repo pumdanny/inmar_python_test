@@ -156,6 +156,12 @@ class DATA_PROCESSOR:
             print(f"Records with at least one required field null saved to {null_output_file}")
             
 
+            # clean files from removing special characters or junk characters, etc.
+            # remove special characters from address and location
+            valid_df['address'] = valid_df['address'].str.replace(r"[^\w\s]", "", regex=True)
+            valid_df['reviews_list'] = valid_df['reviews_list'].str.replace(r"[^\w\s]", "", regex=True)
+
+
             # save valid data to success folder
             valid_output_file = os.path.join(self.success_path, f"{file_name_only[0:-4]}.out")
             valid_df.to_csv(valid_output_file, index=False)
